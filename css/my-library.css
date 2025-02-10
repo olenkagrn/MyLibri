@@ -1,0 +1,60 @@
+.manga-list {
+  background-image: url("/assets/anime-posters/bg-image.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+  .manga__search-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.4rem;
+    margin-top: 12.4rem;
+    .manga-search__container {
+      display: block;
+      width: 50%;
+      position: relative;
+
+      align-items: center;
+      .manga-search-input {
+        flex: 1;
+        width: 100%;
+        background-color: transparent;
+        color: var(--white-default-color);
+        padding: 1.6rem;
+        padding-right: 4rem;
+        border: var(--border-accented);
+        border-radius: 3rem;
+      }
+      .manga-search__btn {
+        background-color: transparent;
+        border: none;
+        color: var(--white-default-color);
+        position: absolute;
+        right: 0.4rem;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+    }
+    .manga-filter__btn {
+      background-color: transparent;
+      border: none;
+      color: var(--white-default-color);
+      cursor: pointer;
+    }
+  }
+  .manga-items__container {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .manga-title__empty {
+      font-size: 3.2rem;
+      margin-bottom: 1.6rem;
+    }
+    .manga-subtitle__empty {
+      font-size: 2.4rem;
+    }
+  }
+}

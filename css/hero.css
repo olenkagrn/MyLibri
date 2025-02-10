@@ -1,72 +1,9 @@
-.header {
-  display: flex;
-  padding: 1.6rem 2rem;
-  border: 1px solid var(--accented-color);
-  border-radius: 5rem;
-  .header__logo-container {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    margin-right: 25rem;
-    cursor: pointer;
-    .header__logo-text {
-      color: var(--white-default-color);
-      font-weight: 600;
-      font-size: 2.4rem;
-    }
-    .header__logo-svg {
-      color: var(--accented-color);
-      max-width: 3.6rem;
-      max-height: 3.6rem;
-      display: inline-block;
-    }
-  }
-
-  .header__nav {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    .header__nav-list {
-      display: flex;
-      gap: 2.4rem;
-      align-items: center;
-
-      .header__nav-item a {
-        color: var(--white-default-color);
-        list-style: none;
-        text-decoration: none;
-        font-size: 1.6rem;
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          height: 2px;
-          width: 100%;
-          background-color: var(--accented-color);
-          transition: all ease-in-out 0.3s;
-          transform: scaleX(0);
-        }
-      }
-      .header__nav-item a:hover::before {
-        transform: scaleX(1);
-      }
-    }
-    .header__nav-btn {
-      margin-left: auto;
-      color: var(--white-default-color);
-      list-style: none;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 1.6rem;
-    }
-  }
-}
-
 .hero {
-  height: 100vh;
   background-image: url("/assets/anime-posters/bg-image.png");
+  background-size: cover;
+  background-position: top;
+  padding-bottom: 14rem;
+
   .hero__carousel {
     max-width: 115rem;
     width: 100%;

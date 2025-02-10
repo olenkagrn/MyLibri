@@ -1,0 +1,56 @@
+.app-instructions {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  padding-bottom: 10.4rem;
+  .app-instructions__info {
+    .app-instructions__heading-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .app-instructions__title {
+        color: var(--white-default-color);
+        font-size: 3.2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+      .app-instructions__subtitle-block {
+        font-size: 3.2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+        display: block;
+        max-width: 43.4rem;
+        align-self: flex-end;
+
+        .app-instructions__subtitle-accent {
+          color: var(--accented-color);
+        }
+      }
+    }
+
+    .app-instructions__steps {
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+      margin-top: 5rem;
+      .app-instructions__step {
+        display: flex;
+        gap: 1.6rem;
+        align-items: center;
+        .app-instructions__list-item {
+          font-size: 3.2rem;
+          font-weight: 200;
+          line-height: 1.2;
+        }
+      }
+    }
+  }
+  .app-instructions__img-container {
+    .app-instructions__img {
+      width: 100%;
+    }
+  }
+}

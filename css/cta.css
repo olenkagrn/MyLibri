@@ -1,0 +1,76 @@
+.cta {
+  text-align: center;
+  background-image: url("/assets/anime-posters/bg-image.png");
+  background-size: cover;
+  background-position: center;
+  padding: 12rem 0;
+  .cta__heading {
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .cta__description {
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 2.4rem 0 5.6rem 0;
+    text-transform: capitalize;
+  }
+
+  .cta__benefits-group {
+    display: flex;
+    gap: 2.8rem;
+    justify-content: center;
+    margin-bottom: 6.4rem;
+
+    .cta__benefits-item {
+      align-items: center;
+      padding: 1.2rem 1.6rem;
+      border-radius: 10rem;
+      border: var(--border-accented);
+      display: flex;
+      gap: 0.8rem;
+      .cta__benefits-icon {
+        color: var(--accented-color);
+        width: 2rem;
+      }
+      .cta__benefit-title {
+        font-size: 1.6rem;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .cta__input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    .cta__benefits-input[type="email"] {
+      background-color: var(--input-form-bg-color);
+      color: var(--white-default-color);
+      padding: 1.6rem;
+      max-width: 40rem;
+      width: 100%;
+      border: 2px solid transparent;
+      border-radius: 2rem;
+      transition: border-color 0.3s ease;
+      &:focus {
+        border: 2px solid green;
+        outline: none;
+      }
+      &:focus:invalid {
+        border: 2px solid red;
+      }
+
+      &::placeholder {
+        color: var(--white-default-color);
+      }
+    }
+    .cta__submit-btn {
+      color: inherit;
+      font-weight: 500;
+      font-family: inherit;
+    }
+  }
+}

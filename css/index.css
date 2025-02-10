@@ -1,2 +1,7 @@
 @import "global.css";
+@import "global.header.css";
 @import "hero.css";
+@import "features.css";
+@import "app-instructions.css";
+@import "cta.css";
+@import "global.footer.css";
