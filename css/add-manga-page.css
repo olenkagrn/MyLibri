@@ -1,0 +1,164 @@
+.add-manga {
+  padding: 15rem 0;
+
+  background-image: url("/assets/anime-posters/bg-image.png");
+  background-size: cover;
+  background-position: center;
+  .add-manga__form {
+    gap: 3.2rem;
+    .add-manga__forms-group {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+
+      .add-manga__instructions {
+        font-family: "Russo One", serif;
+        font-weight: 700;
+        font-size: 3.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 5.6rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        .manga__label {
+          font-size: 2.4rem;
+          font-weight: 700;
+        }
+        .manga__description {
+          font-size: 1.8rem;
+          font-weight: 300;
+        }
+        .manga__input {
+          font-family: inherit;
+          font-size: 2.4rem;
+          color: var(--input-text-color);
+          padding: 2rem 1.8rem;
+          width: 100%;
+          background-color: var(--dark-default-color);
+          border: 1px solid var(--accented-color);
+          border-radius: 0.4rem;
+        }
+      }
+    }
+  }
+}
+
+#drop-area {
+  max-width: 30rem;
+
+  text-align: center;
+  border-radius: 3rem;
+}
+#img-view {
+  width: 100%;
+  height: 34rem;
+  padding: 2rem;
+  border-radius: 0.4rem;
+  border: 2px dashed var(--accented-color);
+  background: var(--dark-default-color);
+  background-position: center;
+  background-size: cover;
+}
+.input-upload__svg {
+  width: 10rem;
+  margin-top: 2.4rem;
+}
+.input-upload__description {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+.input-upload__subdescription {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-top: 1.6rem;
+}
+
+.manga__select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.manga__select-input {
+  appearance: none;
+  flex: 1;
+  padding-right: 3rem;
+}
+.manga__select-category {
+}
+
+.manga__select-icon {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white-default-color);
+  width: 2.4rem;
+  height: 2.4rem;
+  transition: transform 0.3s ease;
+}
+
+.manga__select-wrapper.open .manga__select-icon {
+  transform: rotate(180deg);
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-icon-container {
+  width: 3.6rem;
+  height: 3.6rem;
+  border: var(--border-accented);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+.checkbox-icon {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.checkbox-input:checked + .checkbox-icon-container .checkbox-icon {
+  opacity: 1;
+}
+
+.checkbox-input:checked + .checkbox-icon-container {
+  background-color: var(--accented-color);
+}
+
+.add-manga__btn {
+  display: inline-block;
+  margin-top: 3.2rem;
+  padding: 1.6rem 4rem;
+  border-radius: 0.4rem;
+  background-color: var(--accented-color);
+  position: relative;
+  color: inherit;
+  font-family: inherit;
+  transition: all 0.2s;
+  &:hover {
+    background-color: var(--hover-btn-color);
+    transition: all ease-in-out 0.3s;
+  }
+}

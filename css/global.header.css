@@ -10,10 +10,13 @@
     align-items: center;
     margin-right: 25rem;
     cursor: pointer;
-    .header__logo-text {
-      color: var(--white-default-color);
-      font-weight: 600;
-      font-size: 2.4rem;
+    .logo__link {
+      text-decoration: none;
+      .header__logo-text {
+        color: var(--white-default-color);
+        font-weight: 600;
+        font-size: 2.4rem;
+      }
     }
   }
 

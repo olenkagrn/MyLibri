@@ -1,0 +1,75 @@
+.add-manga__modal {
+  display: none;
+  width: 60vw;
+  height: 70vh;
+  z-index: 1;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--white-default-color);
+  background-color: var(--modal-bg-color);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("../assets/anime-posters/modal-bg.jpg");
+  background-position: right;
+  background-size: cover;
+  border-radius: 2rem;
+  .add-manga__modal-content {
+    position: relative;
+    padding: 3.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .close-btn {
+      color: var(--white-default-color);
+      font-size: 8rem;
+      position: absolute;
+      right: 4rem;
+      top: 2rem;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        color: var(--accented-color);
+        transition: all ease-in-out 0.3s;
+      }
+    }
+    .add-manga__modal-title {
+      font-family: "Russo One", serif;
+      letter-spacing: 6px;
+      font-size: 7.2rem;
+      font-weight: 600;
+      margin-bottom: 3.2rem;
+    }
+    .add-manga__modal-subtitle {
+      font-family: "Russo One", serif;
+
+      font-size: 4.8rem;
+      margin-bottom: 4.8rem;
+    }
+    .add-manga__modal-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 2rem 4rem;
+      border-radius: 0.4rem;
+      border: var(--border-accented);
+      transition: all 0.2s;
+      font-family: "Russo One", serif;
+      color: inherit;
+      font-size: 2.4rem;
+      font-weight: 500;
+
+      &:hover,
+      &:focus {
+        background-color: var(--hover-btn-color);
+        transition: all ease-in-out 0.3s;
+      }
+    }
+  }
+}

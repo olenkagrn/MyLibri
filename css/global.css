@@ -14,6 +14,7 @@
   --hover-btn-color: #75ade8;
   --input-form-bg-color: #261d34;
   --input-text-color: #818181;
+  --modal-bg-color: #1b1b1e;
 
   --border-accented: 1px solid var(--accented-color);
 }
@@ -35,6 +36,11 @@ body {
   margin: 0 auto;
 }
 
+.container-middle {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
 .btn-primary,
 &:link,
 &:visited {
@@ -44,6 +50,8 @@ body {
   background-color: var(--accented-color);
   position: relative;
   transition: all 0.2s;
+  font-family: inherit;
+  color: inherit;
 
   &:hover {
     background-color: var(--hover-btn-color);

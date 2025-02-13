@@ -44,17 +44,47 @@
     }
   }
   .manga-items__container {
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .manga-title__empty {
-      font-size: 3.2rem;
-      margin-bottom: 1.6rem;
+    padding: 6.4rem 0 9.6rem 0;
+
+    display: grid;
+    row-gap: 8.6rem;
+    column-gap: 6.4rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    .manga-empty__container {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .manga-title__empty {
+        font-size: 3.2rem;
+        margin-bottom: 1.6rem;
+      }
+      .manga-subtitle__empty {
+        font-size: 2.4rem;
+      }
     }
-    .manga-subtitle__empty {
-      font-size: 2.4rem;
+
+    .manga-item {
+      width: 23.2rem;
+      .manga-img {
+        display: block;
+        width: 100%;
+        border: var(--border-accented);
+        border-radius: 2rem;
+        margin-bottom: 1.6rem;
+      }
+      .manga-content {
+        .manga-title {
+          font-size: 2.4rem;
+          font-weight: 500;
+        }
+        .manga-author {
+          font-size: 1.6rem;
+          font-weight: 200;
+        }
+      }
     }
   }
 }
