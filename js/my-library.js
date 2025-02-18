@@ -1,5 +1,6 @@
 function init() {
   import("./filter-for-search.js");
+  import("./search-manga.js");
 }
 
 const totalPartials = document.querySelectorAll(

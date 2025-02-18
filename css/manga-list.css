@@ -3,6 +3,7 @@
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
+
   .manga__search-panel {
     display: flex;
     align-items: center;
@@ -45,12 +46,13 @@
   }
   .manga-items__container {
     padding: 6.4rem 0 9.6rem 0;
+    height: 60vh;
 
     display: grid;
     row-gap: 8.6rem;
     column-gap: 6.4rem;
     grid-template-columns: repeat(auto-fit, minmax(23.2rem, 1fr));
-
+    place-items: center;
     .manga-empty__container {
       height: 60vh;
       display: flex;
@@ -88,4 +90,11 @@
       }
     }
   }
+}
+
+.no-manga-message {
+  font-size: 3.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
 }
