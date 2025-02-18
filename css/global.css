@@ -51,7 +51,7 @@ body {
   position: relative;
   transition: all 0.2s;
   font-family: inherit;
-  color: inherit;
+  color: var(--white-default-color);
 
   &:hover {
     background-color: var(--hover-btn-color);
@@ -63,4 +63,23 @@ body {
   max-width: 3.6rem;
   max-height: 3.6rem;
   display: inline-block;
+}
+.close-btn {
+  color: var(--white-default-color);
+  font-size: 8rem;
+  font-weight: 400;
+  position: absolute;
+  right: 4rem;
+  top: 2rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--accented-color);
+    transition: all ease-in-out 0.3s;
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }

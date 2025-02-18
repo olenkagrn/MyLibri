@@ -1,4 +1,6 @@
-function init() {}
+function init() {
+  import("./filter-for-search.js");
+}
 
 const totalPartials = document.querySelectorAll(
   '[hx-trigger="load"], [data-hx-trigger="load"]'
