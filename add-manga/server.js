@@ -6,6 +6,13 @@ const bodyParser = require("body-parser");
 
 // Налаштування сервера
 const app = express();
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+
 const port = 4000;
 
 // Підключення до PostgreSQL
@@ -63,4 +70,14 @@ app.listen(port, () => {
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Manga Add Form!");
+});
+
+app.get("/manga", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM manga");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching manga:", error);
+    res.status(500).send("Something went wrong.");
+  }
 });
