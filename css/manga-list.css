@@ -3,6 +3,7 @@
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
+  height: 116vh;
 
   .manga__search-panel {
     display: flex;
@@ -46,7 +47,6 @@
   }
   .manga-items__container {
     padding: 6.4rem 0 9.6rem 0;
-    height: 60vh;
 
     display: grid;
     row-gap: 8.6rem;

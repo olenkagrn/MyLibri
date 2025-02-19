@@ -1,29 +1,16 @@
 console.log("✅ render-manga.js loaded");
 
-document.body.addEventListener("htmx:afterOnLoad", async () => {
+export function renderManga(mangaData, currentPage, itemsPerPage) {
   const mangaContainer = document.getElementById("manga-container");
   if (!mangaContainer) return;
 
-  try {
-    console.log("🔄 Виконуємо запит до сервера...");
-
-    const response = await fetch("http://localhost:4000/manga");
-    const mangaData = await response.json();
-
-    window.mangaData = mangaData; // Зберігаємо дані в глобальну змінну
-
-    renderManga(mangaData);
-  } catch (error) {
-    console.error("Error loading manga:", error);
-  }
-});
-
-// Функція для рендерингу манг
-function renderManga(mangaData) {
-  const mangaContainer = document.getElementById("manga-container");
   mangaContainer.innerHTML = "";
 
-  mangaData.forEach((manga) => {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedManga = mangaData.slice(start, end);
+
+  paginatedManga.forEach((manga) => {
     const mangaItem = document.createElement("div");
     mangaItem.classList.add("manga-item");
 
@@ -48,8 +35,5 @@ function renderManga(mangaData) {
     mangaItem.appendChild(img);
     mangaItem.appendChild(mangaContent);
     mangaContainer.appendChild(mangaItem);
-
-    // Додаємо посилання на елемент у масиві
-    manga.element = mangaItem;
   });
 }

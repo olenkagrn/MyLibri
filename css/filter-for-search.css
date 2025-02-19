@@ -35,7 +35,8 @@
       }
       .selected {
         background-color: var(--accented-color);
-        border: none;
+        border: var(--border-accented);
+        transition: all ease-in-out 0.3s;
       }
     }
   }
