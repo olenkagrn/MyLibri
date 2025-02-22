@@ -1,6 +1,7 @@
 function init() {
   import("./filter-for-search.js");
   import("./search-manga.js");
+
   import("./my-library-pagination.js").then((pagination) => {
     fetchMangaData().then((mangaData) => {
       pagination.updatePagination(mangaData);

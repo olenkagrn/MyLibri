@@ -15,6 +15,7 @@
   background-position: right;
   background-size: cover;
   border-radius: 2rem;
+  transition: all ease-in-out 0.3s;
   .add-manga__modal-content {
     position: relative;
     padding: 3.2rem;

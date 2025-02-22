@@ -61,7 +61,7 @@
   border: 2px dashed var(--accented-color);
   background: var(--dark-default-color);
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 .input-upload__svg {
   width: 10rem;

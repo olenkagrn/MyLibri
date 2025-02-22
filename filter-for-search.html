@@ -11,18 +11,36 @@
   <div class="filter-window__block">
     <h3 class="filter-window__title">Genres:</h3>
     <div class="filter-window__btn-group">
-      <button type="button" class="filter-window__btn">Shonen</button>
-      <button type="button" class="filter-window__btn">Shojo</button>
-      <button type="button" class="filter-window__btn">Seinen</button>
-      <button type="button" class="filter-window__btn">Josei</button>
-      <button type="button" class="filter-window__btn">Fantasy</button>
-      <button type="button" class="filter-window__btn">Isekai</button>
-      <button type="button" class="filter-window__btn">Horror</button>
-      <button type="button" class="filter-window__btn">Romance</button>
-      <button type="button" class="filter-window__btn">Adventure</button>
+      <button type="button" class="filter-window__btn" id="Shonen">
+        Shonen
+      </button>
+      <button type="button" class="filter-window__btn" id="Shojo">Shojo</button>
+      <button type="button" class="filter-window__btn" id="Seinen">
+        Seinen
+      </button>
+      <button type="button" class="filter-window__btn" id="Josei">Josei</button>
+      <button type="button" class="filter-window__btn" id="Fantasy">
+        Fantasy
+      </button>
+      <button type="button" class="filter-window__btn" id="Isekai">
+        Isekai
+      </button>
+      <button type="button" class="filter-window__btn" id="Horror">
+        Horror
+      </button>
+      <button type="button" class="filter-window__btn" id="Romance">
+        Romance
+      </button>
+      <button type="button" class="filter-window__btn" id="Adventure">
+        Adventure
+      </button>
     </div>
   </div>
-  <button type="/submit" class="filter-window__apply-btn btn-primary">
+  <button
+    id="submitFiltersBtn"
+    type="submit"
+    class="filter-window__apply-btn btn-primary"
+  >
     Apply Filters
   </button>
 </dialog>

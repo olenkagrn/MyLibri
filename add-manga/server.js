@@ -44,22 +44,26 @@ app.use("/uploads", express.static("uploads"));
 
 // Маршрут для обробки форми
 app.post("/add-manga", upload.single("image"), async (req, res) => {
-  console.log("Body:", req.body); // Вивести всі поля форми
-  console.log("File:", req.file); // Вивести інформацію про файл
+  console.log("Body:", req.body);
+  console.log("File:", req.file);
+
   const { mangaName, author, category } = req.body;
   const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
+  if (!mangaName || !author || !category) {
+    return res.status(400).send("Missing required fields!");
+  }
+
   try {
-    // Вставка даних в таблицю manga
     const result = await pool.query(
       "INSERT INTO manga (title, author, category, image) VALUES ($1, $2, $3, $4) RETURNING id",
-      [mangaName, author, category, imagePath] // Оновлені змінні для таблиці
+      [mangaName, author, `{${category}}`, imagePath]
     );
 
     res.status(200).send("Manga added successfully!");
   } catch (error) {
-    console.error("Error inserting into the database:", error); // Лог помилки
-    res.status(500).send(`Something went wrong: ${error.message}`); // Виведення повідомлення про помилку
+    console.error("Error inserting into the database:", error);
+    res.status(500).send(`Something went wrong: ${error.message}`);
   }
 });
 
@@ -68,16 +72,25 @@ app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Manga Add Form!");
-});
-
 app.get("/manga", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM manga");
+    const { category } = req.query;
+    let query = "SELECT * FROM manga";
+    let values = [];
+
+    if (category) {
+      query += " WHERE category @> $1";
+      values.push(`{"${category}"}`); // Формуємо JSON-об'єкт для PostgreSQL
+    }
+
+    const result = await pool.query(query, values);
     res.json(result.rows);
   } catch (error) {
     console.error("Error fetching manga:", error);
     res.status(500).send("Something went wrong.");
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Manga Add Form!");
 });

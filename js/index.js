@@ -1,5 +1,7 @@
 function init() {
   import("./main-carousel.js");
+  import("./animated-text.js");
+  import("./send-user-email.js");
 }
 
 const totalPartials = document.querySelectorAll(

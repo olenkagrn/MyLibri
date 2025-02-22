@@ -1,21 +1,19 @@
 import { updatePagination } from "./my-library-pagination.js";
 
-let originalMangaData = []; // Змінна для збереження початкових даних
+let originalMangaData = [];
 
 document.body.addEventListener("input", (e) => {
   if (e.target && e.target.id === "search") {
     const value = e.target.value.toLowerCase();
-    if (!window.mangaData) return; // Переконуємося, що дані існують
+    if (!window.mangaData) return;
 
-    // Зберігаємо оригінальні дані при першому завантаженні
     if (originalMangaData.length === 0) {
-      originalMangaData = [...window.mangaData]; // Копіюємо дані манги в оригінальну змінну
+      originalMangaData = [...window.mangaData];
     }
 
     const mangaContainer = document.getElementById("manga-container");
     let noMangaMessage = document.getElementById("no-manga-message");
 
-    // Якщо повідомлення ще немає, додаємо його
     if (!noMangaMessage) {
       noMangaMessage = document.createElement("div");
       noMangaMessage.id = "no-manga-message";
@@ -23,13 +21,13 @@ document.body.addEventListener("input", (e) => {
       noMangaMessage.innerHTML =
         "Sorry, but this manga wasn't added <br> to your library.";
       mangaContainer.appendChild(noMangaMessage);
+      mangaContainer.style.height = "60vh";
     }
 
-    // Якщо поле пошуку пусте – повертаємо початковий список
     if (value.trim() === "") {
-      noMangaMessage.style.display = "none"; // Ховаємо повідомлення
-      window.mangaData = [...originalMangaData]; // Відновлюємо початкові дані
-      updatePagination(window.mangaData); // Повертаємо весь список
+      noMangaMessage.style.display = "none";
+      window.mangaData = [...originalMangaData];
+      updatePagination(window.mangaData);
       return;
     }
 
@@ -40,12 +38,12 @@ document.body.addEventListener("input", (e) => {
     );
 
     if (filteredManga.length > 0) {
-      noMangaMessage.style.display = "none"; // Ховаємо повідомлення
-      updatePagination(filteredManga); // Оновлюємо пагінацію з новими даними
+      noMangaMessage.style.display = "none";
+      updatePagination(filteredManga);
     } else {
-      noMangaMessage.style.display = "block"; // Показуємо повідомлення
-      mangaContainer.innerHTML = ""; // Очищаємо контент
-      mangaContainer.appendChild(noMangaMessage); // Залишаємо лише повідомлення
+      noMangaMessage.style.display = "block";
+      mangaContainer.innerHTML = "";
+      mangaContainer.appendChild(noMangaMessage);
     }
   }
 });

@@ -3,7 +3,6 @@
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
-  height: 116vh;
 
   .manga__search-panel {
     display: flex;
@@ -47,29 +46,17 @@
   }
   .manga-items__container {
     padding: 6.4rem 0 9.6rem 0;
-
     display: grid;
     row-gap: 8.6rem;
     column-gap: 6.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(23.2rem, 1fr));
-    place-items: center;
-    .manga-empty__container {
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .manga-title__empty {
-        font-size: 3.2rem;
-        margin-bottom: 1.6rem;
-      }
-      .manga-subtitle__empty {
-        font-size: 2.4rem;
-      }
-    }
+    grid-template-columns: repeat(4, minmax(23.2rem, 1fr));
+    place-items: center start;
+    align-items: start;
 
     .manga-item {
       width: 23.2rem;
+      position: relative;
+
       .manga-img {
         display: block;
         width: 100%;
@@ -88,6 +75,25 @@
           font-weight: 200;
         }
       }
+      .manga-item__edit-button {
+        padding: 1.2rem;
+        position: absolute;
+        top: 28rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        background-color: var(--accented-color);
+        border: none;
+        transition: all 0.2s;
+        font-family: inherit;
+        color: var(--white-default-color);
+        font-size: 1.6rem;
+
+        &:hover {
+          background-color: var(--hover-btn-color);
+          transition: all ease-in-out 0.3s;
+        }
+      }
     }
   }
 }
@@ -97,4 +103,31 @@
   text-transform: uppercase;
   text-align: center;
   line-height: 1.5;
+  width: 100%;
+  grid-column: -1/1;
+  place-self: center;
+}
+
+.manga-empty__container {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: -1/1;
+  place-self: center;
+  .manga-title__empty {
+    font-size: 3.2rem;
+    margin-bottom: 1.6rem;
+  }
+  .manga-subtitle__empty {
+    font-size: 2.4rem;
+  }
+}
+
+.manga__edit-container {
+  width: 100rem;
+  height: 190rem;
+  background-color: var(--dark-default-color);
 }

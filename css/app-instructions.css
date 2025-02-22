@@ -54,3 +54,18 @@
     }
   }
 }
+
+/* Initial state: elements are hidden and positioned off-screen */
+.app-instructions__info .app-instructions__heading-container,
+.app-instructions__info .app-instructions__steps .app-instructions__step {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Animation for visible elements */
+.app-instructions__info.show .app-instructions__heading-container,
+.app-instructions__info.show .app-instructions__steps .app-instructions__step {
+  opacity: 1;
+  transform: translateX(0);
+}

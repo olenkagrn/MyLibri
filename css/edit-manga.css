@@ -1,0 +1,66 @@
+.edit-manga__container {
+  width: 70rem;
+  height: 90rem;
+  background-color: var(--dark-default-color);
+  border-radius: 0.8rem;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--white-default-color);
+  .edit-manga__img {
+    width: 100%;
+    height: 64%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .edit-manga__info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: start;
+    padding: 0 2rem;
+    margin: 3.2rem 0;
+    .edit-manga__details {
+      font-weight: 400;
+      font-size: 2.4rem;
+      color: var(--white-default-color);
+
+      .edit-manga__title {
+        font-size: 3rem;
+        margin-bottom: 1.6rem;
+      }
+      .edit-manga__author {
+        margin-bottom: 0.8rem;
+      }
+      .edit-manga__categ {
+      }
+    }
+    .edit-manga__options-icon {
+      width: 4.2rem;
+      height: 4.2rem;
+      color: var(--white-default-color);
+      cursor: pointer;
+    }
+  }
+  .edit-manga__btn-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+    padding: 0 2rem;
+
+    .edit-manga__btn {
+      padding: 2rem;
+      background-color: transparent;
+      border: var(--border-accented);
+      color: var(--white-default-color);
+      font-size: 3.2rem;
+
+      &:hover {
+        background-color: var(--hover-btn-color);
+        transition: all ease-in-out 0.3s;
+      }
+    }
+  }
+}

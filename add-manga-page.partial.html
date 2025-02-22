@@ -1,6 +1,5 @@
 <section class="add-manga">
   <form
-    action="http://localhost:4000/add-manga"
     method="post"
     class="add-manga__form container-middle"
     enctype="multipart/form-data"
@@ -21,7 +20,6 @@
           placeholder="Enter a title"
           class="manga__input"
           maxlength="32"
-          pattern="[A-Za-z]{1,32}"
           required
         />
       </div>
@@ -38,8 +36,7 @@
           name="author"
           placeholder="Enter the name and surname"
           class="manga__input"
-          maxlength="32"
-          pattern="[A-Za-z]{1,32}"
+          maxlength="24"
           required
         />
       </div>
@@ -100,6 +97,7 @@
             <option value="horror">Horror</option>
             <option value="fantasy">Fantasy</option>
             <option value="romance">Romance</option>
+            <option value="adventure">Adventure</option>
           </select>
           <svg
             class="manga__select-icon"
