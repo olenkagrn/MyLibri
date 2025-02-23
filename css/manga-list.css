@@ -45,7 +45,7 @@
     }
   }
   .manga-items__container {
-    padding: 6.4rem 0 9.6rem 0;
+    padding: 12rem 0 9.6rem 0;
     display: grid;
     row-gap: 8.6rem;
     column-gap: 6.4rem;
@@ -84,6 +84,7 @@
         width: 90%;
         background-color: var(--accented-color);
         border: none;
+        border-radius: 0.6rem;
         transition: all 0.2s;
         font-family: inherit;
         color: var(--white-default-color);

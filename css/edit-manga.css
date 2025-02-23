@@ -40,7 +40,7 @@
     .edit-manga__options-icon {
       width: 4.2rem;
       height: 4.2rem;
-      color: var(--white-default-color);
+      color: var(--warning-default-color);
       cursor: pointer;
     }
   }
@@ -62,5 +62,41 @@
         transition: all ease-in-out 0.3s;
       }
     }
+  }
+}
+
+.edit-option__dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(80%, -50%);
+  width: 50rem;
+  padding: 6rem;
+  background-color: var(--dark-default-color);
+  color: var(--white-default-color);
+  .edit-option__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 2.4rem;
+    .edit-manga__parameter {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+    .edit-manga__input {
+      padding: 2.4rem;
+      border: var(--border-accented);
+      border-radius: 0.4rem;
+      font-family: inherit;
+      background-color: transparent;
+      color: inherit;
+
+      &::placeholder {
+        color: var(--white-default-color);
+      }
+    }
+  }
+  .edit-manga__apply-changes {
+    border-radius: 0.4rem;
   }
 }

@@ -90,6 +90,59 @@ app.get("/manga", async (req, res) => {
     res.status(500).send("Something went wrong.");
   }
 });
+app.put("/update-manga/:id", async (req, res) => {
+  const { id } = req.params;
+  const { mangaName, author, category } = req.body;
+
+  if (!mangaName || !author || !category) {
+    return res.status(400).send("Missing required fields!");
+  }
+
+  try {
+    const result = await pool.query(
+      "UPDATE manga SET title = $1, author = $2, category = $3 WHERE id = $4 RETURNING *",
+      [mangaName, author, `{${category}}`, id]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).send("Manga not found!");
+    }
+
+    res
+      .status(200)
+      .json({ message: "Manga updated successfully!", manga: result.rows[0] });
+  } catch (error) {
+    console.error("Error updating manga:", error);
+    res.status(500).send(`Something went wrong: ${error.message}`);
+  }
+});
+
+app.delete("/delete-manga/:id", async (req, res) => {
+  const mangaId = req.params.id;
+
+  try {
+    // Переконаємося, що ID – це число
+    const parsedId = parseInt(mangaId, 10);
+    if (isNaN(parsedId)) {
+      return res.status(400).json({ error: "Invalid ID format" });
+    }
+
+    // Видалити мангу з бази
+    const result = await pool.query(
+      "DELETE FROM manga WHERE id = $1 RETURNING *",
+      [parsedId]
+    );
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Manga not found" });
+    }
+
+    res.status(200).json({ message: "Manga deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting manga:", error);
+    res.status(500).json({ error: "Failed to delete manga" });
+  }
+});
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Manga Add Form!");

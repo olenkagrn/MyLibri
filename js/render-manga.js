@@ -66,6 +66,7 @@ export function renderManga(mangaData, currentPage, itemsPerPage) {
     editModal.classList.add("edit-manga__container");
     const btnEditCloseId = "editClose";
     const editEditDeleteId = "editDelete";
+    const btnEditItemId = "btnEditItemId";
 
     editModal.innerHTML = `
     <img class="edit-manga__img" src="${manga.image}" />
@@ -76,10 +77,9 @@ export function renderManga(mangaData, currentPage, itemsPerPage) {
         <p class="edit-manga__categ">${manga.category}</p>
       </div>
       
-      <svg class="edit-manga__options-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 3.293a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-9 9A1 1 0 0 1 11 17H8a1 1 0 0 1-1-1v-3a1 1 0 0 1 .293-.707zM9 13.414V15h1.586l8-8L17 5.414zM3 7a2 2 0 0 1 2-2h5a1 1 0 1 1 0 2H5v12h12v-5a1 1 0 1 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    </div>
+<svg id="${editEditDeleteId}" class="edit-manga__options-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 5h4a2 2 0 1 0-4 0M8.5 5a3.5 3.5 0 1 1 7 0h5.75a.75.75 0 0 1 0 1.5h-1.32l-1.17 12.111A3.75 3.75 0 0 1 15.026 22H8.974a3.75 3.75 0 0 1-3.733-3.389L4.07 6.5H2.75a.75.75 0 0 1 0-1.5zm2 4.75a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0zM14.25 9a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-1.5 0v-7.5a.75.75 0 0 1 .75-.75m-7.516 9.467a2.25 2.25 0 0 0 2.24 2.033h6.052a2.25 2.25 0 0 0 2.24-2.033L18.424 6.5H5.576z"/></svg>    </div>
     <div class="edit-manga__btn-container">
-      <button id="${editEditDeleteId}" class="edit-manga__btn">Delete Manga</button>
+      <button id="${btnEditItemId}" class="edit-manga__btn">Edit Manga</button>
       <button id="${btnEditCloseId}" class="edit-manga__btn">Close</button>
 
     </div>
@@ -134,15 +134,121 @@ export function renderManga(mangaData, currentPage, itemsPerPage) {
     });
 
     const deleteButton = editModal.querySelector(`#${editEditDeleteId}`);
-    deleteButton.addEventListener("click", () => {
-      // Remove the manga item from the DOM by referencing its unique ID
-      const mangaItemToDelete = document.getElementById(`manga-${manga.id}`);
-      if (mangaItemToDelete) {
-        mangaItemToDelete.remove();
+    deleteButton.addEventListener("click", async () => {
+      const isDeleted = await deleteManga(manga.id);
+      if (isDeleted) {
+        const mangaItemToDelete = document.getElementById(`manga-${manga.id}`);
+        if (mangaItemToDelete) {
+          mangaItemToDelete.remove();
+        }
+        closeEditDialog();
       }
+    });
 
-      // Close the modal after deletion
-      closeEditDialog();
+    const btnEditItem = editModal.querySelector(`#${btnEditItemId}`);
+
+    btnEditItem.addEventListener("click", () => {
+      console.log("added");
+      const applyChanges = "applyChanges";
+
+      const editOptionWindow = document.createElement("dialog");
+      editOptionWindow.id = "editOptionWindow";
+      editOptionWindow.classList.add("edit-option__dialog");
+
+      editOptionWindow.innerHTML = `
+      <div class="edit-option__container">
+        <h3 class="edit-manga__parameter">${manga.title}</h3>
+        <input id="ChangeTitle" class="edit-manga__input" type="text" placeholder="Change title" />
+        <p class="edit-manga__parameter">${manga.author}</p>
+        <input id="ChangeAuthor" class="edit-manga__input" type="text" placeholder="Change author" />
+        <p class="edit-manga__parameter">${manga.category}</p>
+        <input id="ChangeCategory" class="edit-manga__input" type="text" placeholder="Change category" />
+      </div>
+      <button class="edit-manga__apply-changes btn-primary" id="${applyChanges}">Apply Changes</button>`;
+
+      document.body.appendChild(editOptionWindow);
+      editOptionWindow.showModal();
+
+      const applyChangesBtn = document.getElementById(`${applyChanges}`);
+      applyChangesBtn.addEventListener("click", () => {
+        const newTitle = document.getElementById("ChangeTitle").value;
+        const newAuthor = document.getElementById("ChangeAuthor").value;
+        const newCategory = document.getElementById("ChangeCategory").value;
+
+        manga.title = newTitle || manga.title; // Якщо поле пусте, залишаємо старе значення
+        manga.author = newAuthor || manga.author;
+        manga.category = newCategory || manga.category;
+
+        const updatedData = {
+          mangaName: newTitle,
+          author: newAuthor,
+          category: newCategory,
+        };
+
+        updateManga(manga.id, updatedData);
+
+        const mangaItem = document.getElementById(`manga-${manga.id}`);
+        if (mangaItem) {
+          mangaItem.querySelector(".manga-title").textContent = manga.title;
+          mangaItem.querySelector(".manga-author").textContent = manga.author;
+        }
+
+        // Оновлюємо дані в модальному вікні
+        editModal.querySelector(".edit-manga__title").textContent = manga.title;
+        editModal.querySelector(".edit-manga__author").textContent =
+          manga.author;
+        editModal.querySelector(".edit-manga__categ").textContent =
+          manga.category;
+
+        console.log(manga);
+        editOptionWindow.close();
+      });
     });
   });
+}
+
+async function updateManga(mangaId, updatedData) {
+  try {
+    const response = await fetch(
+      `http://localhost:4000/update-manga/${mangaId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log("Manga updated:", data);
+    } else {
+      console.error("Failed to update manga:", data);
+    }
+  } catch (error) {
+    console.error("Error updating manga:", error);
+  }
+}
+
+async function deleteManga(mangaId) {
+  try {
+    const response = await fetch(
+      `http://localhost:4000/delete-manga/${mangaId}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.ok) {
+      console.log("Manga deleted successfully");
+      return true; // Повертаємо true, якщо видалення пройшло успішно
+    } else {
+      console.error("Failed to delete manga");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error deleting manga:", error);
+    return false;
+  }
 }

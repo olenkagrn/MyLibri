@@ -7,6 +7,8 @@
     border: 1px solid var(--accented-color);
     margin-bottom: 2.4rem;
     align-items: center;
+    overflow: hidden;
+
     .features__logo-text {
       font-size: 2.4rem;
       font-weight: 600;
@@ -17,6 +19,9 @@
     display: flex;
     gap: 8.6rem;
     margin-bottom: 8rem;
+    overflow: hidden;
+    transition: all ease-in-out 0.6s;
+
     .features_heading {
       color: var(--white-default-color);
       font-size: 3.2rem;
@@ -38,6 +43,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2.4rem;
+
     .feature {
       flex: 1 0 30%;
       display: inline-block;
@@ -45,6 +51,8 @@
       padding: 2rem;
       border: var(--border-accented);
       border-radius: 2rem;
+      transition: all ease-in-out 0.6s;
+
       .feature__img-box {
         display: inline-block;
         background-color: var(--icon-bg-color);
@@ -83,4 +91,46 @@
   .wide {
     flex: 2 0 66.66%;
   }
+}
+
+.feature.show {
+  opacity: 1;
+  transform: translateX(0); /* Анімація з'явлення */
+}
+
+/* Анімація для кожного елемента може бути різною, якщо треба */
+.feature:nth-child(1) {
+  transform: translateX(-500px);
+  opacity: 0;
+}
+
+.feature:nth-child(2),
+.features__info,
+.features__logo-container {
+  transform: translateY(-500px);
+  opacity: 0;
+}
+
+.feature:nth-child(3) {
+  transform: translateX(500px);
+  opacity: 0;
+}
+.feature:nth-child(4) {
+  transform: translateY(500px);
+  opacity: 0;
+}
+.feature:nth-child(5) {
+  transform: translateY(500px);
+  opacity: 0;
+}
+
+.feature:nth-child(1).show,
+.feature:nth-child(2).show,
+.feature:nth-child(3).show,
+.feature:nth-child(4).show,
+.feature:nth-child(5).show,
+.features__info.show,
+.features__logo-container.show {
+  transform: translate(0);
+  opacity: 1;
 }

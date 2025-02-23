@@ -15,6 +15,7 @@
   --input-form-bg-color: #261d34;
   --input-text-color: #818181;
   --modal-bg-color: #1b1b1e;
+  --warning-default-color: #ae0000;
 
   --border-accented: 1px solid var(--accented-color);
 }
