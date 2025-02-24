@@ -2,17 +2,18 @@
 
 -- Description --
 
-MyLibri is a web application for adding manga to your own online librari. You have an opportunity to collect all mangas which you`ve already read and keep track of it. It allows users to upload images, enter manga information, and receive confirmation of successful submission. Also you can filter your list by categories.
-
+MyLibri is a web application designed for manga enthusiasts who want to build their own personal electronic library. With MyLibri, you can upload, manage, and organize your favorite manga collections with ease. The app allows users to edit manga details, sort them by genre, and create a structured, personalized manga archive.
 -- Features --
 
-Upload manga images
+Upload and store manga in your personal library
 
-Enter text data (title, description, etc.)
+Edit manga details such as title, description, and cover image
 
-Send data to the server via fetch
+Sort manga by genres for easy browsing
 
-Display a confirmation modal window
+User-friendly interface for seamless navigation
+
+Responsive design for both desktop and mobile users
 
 -- Requirements --
 
@@ -45,12 +46,16 @@ http://localhost:3000
 
 -- Usage --
 
-Fill out the form with the manga title and description.
+Add new manga by filling out the form with its title and description.
 
 Upload an image (by dragging and dropping or clicking the upload area).
 
-Click the "Add Manga" button.
+Assign genres to the manga for easy organization.
 
-A confirmation modal will appear upon successful submission.
+Click the "Add Manga" button to store it in your library.
+
+View, edit, or delete manga from your collection anytime.
+
+Sort manga by genres to quickly find what you're looking for.
 
 If an error occurs, an alert message will display the issue.
