@@ -10,10 +10,12 @@ const app = express();
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://mylibri-1.onrender.com",
+    origin: "*", // Дозволити запити з будь-якого домену (для тестування)
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Дозволити всі методи
+    preflightContinue: false,
+    optionsSuccessStatus: 204, // Дозволити OPTIONS запити
   })
 );
-
 const port = process.env.PORT || 4000;
 
 // Підключення до PostgreSQL
