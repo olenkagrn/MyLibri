@@ -18,10 +18,10 @@ app.use(
 const port = 4000;
 
 // Підключення до PostgreSQL
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 // Налаштування Multer для збереження файлів
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
