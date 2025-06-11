@@ -9,7 +9,7 @@ const app = express();
 const cors = require("cors");
 app.use(
   cors({
-    origin: "*",
+    origin: "https://calm-tulumba-187140.netlify.app/",
   })
 );
 
