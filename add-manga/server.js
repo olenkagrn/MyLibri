@@ -2,7 +2,6 @@ const { createClient } = require("@supabase/supabase-js");
 
 const express = require("express");
 const multer = require("multer");
-const { Pool } = require("pg");
 const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
