@@ -3,4 +3,8 @@ const API_URL =
     ? "http://localhost:4000"
     : "https://mylibri.onrender.com";
 
+SUPABASE_URL = "https://xqjyfqjqmzdixjevxbyy.supabase.co";
+SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxanlmcWpxbXpkaXhqZXZ4Ynl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2MzE2MTksImV4cCI6MjA2NTIwNzYxOX0.KD9KzgdqwyeVmovQmH57fDFbHZcxu8tSyGzcp9emFVA";
+
 export default API_URL;

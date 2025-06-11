@@ -1,9 +1,11 @@
+import { createClient } from "@supabase/supabase-js";
+
 const express = require("express");
 const multer = require("multer");
 const { Pool } = require("pg");
 const path = require("path");
 const bodyParser = require("body-parser");
-
+require("dotenv").config();
 // Налаштування сервера
 const app = express();
 const cors = require("cors");
@@ -16,17 +18,10 @@ app.use(
 const port = 4000;
 
 // Підключення до PostgreSQL
-const pool = new Pool({
-  user: "postgres", // Замініть на ваше ім'я користувача PostgreSQL
-  host: "db.xqjyfqjqmzdixjevxbyy.supabase.co",
-  database: "postgres", // Назва вашої бази даних
-  password: "Asdfggfdsa1!", // Ваш пароль
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false, // Рекомендується для production використовувати true з правильним сертифікатом, але для початку може бути false
-  },
-});
-
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 // Налаштування Multer для збереження файлів
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -47,9 +42,6 @@ app.use("/uploads", express.static("uploads"));
 
 // Маршрут для обробки форми
 app.post("/add-manga", upload.single("image"), async (req, res) => {
-  console.log("Body:", req.body);
-  console.log("File:", req.file);
-
   const { mangaName, author, category } = req.body;
   const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
@@ -57,17 +49,21 @@ app.post("/add-manga", upload.single("image"), async (req, res) => {
     return res.status(400).send("Missing required fields!");
   }
 
-  try {
-    const result = await pool.query(
-      "INSERT INTO manga (title, author, category, image) VALUES ($1, $2, $3, $4) RETURNING id",
-      [mangaName, author, `{${category}}`, imagePath]
-    );
+  const { data, error } = await supabase.from("manga").insert([
+    {
+      title: mangaName,
+      author,
+      category: [category], // Supabase supports arrays like this
+      image: imagePath,
+    },
+  ]);
 
-    res.status(200).send("Manga added successfully!");
-  } catch (error) {
-    console.error("Error inserting into the database:", error);
-    res.status(500).send(`Something went wrong: ${error.message}`);
+  if (error) {
+    console.error("Error inserting into Supabase:", error);
+    return res.status(500).send("Something went wrong.");
   }
+
+  res.status(200).send("Manga added successfully!");
 });
 
 // Запуск сервера
@@ -76,23 +72,24 @@ app.listen(port, () => {
 });
 
 app.get("/manga", async (req, res) => {
-  try {
-    const { category } = req.query;
-    let query = "SELECT * FROM manga";
-    let values = [];
+  const { category } = req.query;
 
-    if (category) {
-      query += " WHERE category @> $1";
-      values.push(`{"${category}"}`); // Формуємо JSON-об'єкт для PostgreSQL
-    }
+  let query = supabase.from("manga").select("*");
 
-    const result = await pool.query(query, values);
-    res.json(result.rows);
-  } catch (error) {
-    console.error("Error fetching manga:", error);
-    res.status(500).send("Something went wrong.");
+  if (category) {
+    query = query.contains("category", [category]);
   }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Error fetching manga:", error);
+    return res.status(500).send("Something went wrong.");
+  }
+
+  res.json(data);
 });
+
 app.put("/update-manga/:id", async (req, res) => {
   const { id } = req.params;
   const { mangaName, author, category } = req.body;
@@ -101,50 +98,45 @@ app.put("/update-manga/:id", async (req, res) => {
     return res.status(400).send("Missing required fields!");
   }
 
-  try {
-    const result = await pool.query(
-      "UPDATE manga SET title = $1, author = $2, category = $3 WHERE id = $4 RETURNING *",
-      [mangaName, author, `{${category}}`, id]
-    );
+  const { data, error } = await supabase
+    .from("manga")
+    .update({
+      title: mangaName,
+      author,
+      category: [category],
+    })
+    .eq("id", id)
+    .select();
 
-    if (result.rowCount === 0) {
-      return res.status(404).send("Manga not found!");
-    }
-
-    res
-      .status(200)
-      .json({ message: "Manga updated successfully!", manga: result.rows[0] });
-  } catch (error) {
+  if (error) {
     console.error("Error updating manga:", error);
-    res.status(500).send(`Something went wrong: ${error.message}`);
+    return res.status(500).send("Something went wrong.");
   }
+
+  if (data.length === 0) {
+    return res.status(404).send("Manga not found!");
+  }
+
+  res
+    .status(200)
+    .json({ message: "Manga updated successfully!", manga: data[0] });
 });
 
 app.delete("/delete-manga/:id", async (req, res) => {
-  const mangaId = req.params.id;
+  const { id } = req.params;
 
-  try {
-    // Переконаємося, що ID – це число
-    const parsedId = parseInt(mangaId, 10);
-    if (isNaN(parsedId)) {
-      return res.status(400).json({ error: "Invalid ID format" });
-    }
+  const { data, error } = await supabase.from("manga").delete().eq("id", id);
 
-    // Видалити мангу з бази
-    const result = await pool.query(
-      "DELETE FROM manga WHERE id = $1 RETURNING *",
-      [parsedId]
-    );
-
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ error: "Manga not found" });
-    }
-
-    res.status(200).json({ message: "Manga deleted successfully" });
-  } catch (error) {
+  if (error) {
     console.error("Error deleting manga:", error);
-    res.status(500).json({ error: "Failed to delete manga" });
+    return res.status(500).json({ error: "Failed to delete manga" });
   }
+
+  if (data.length === 0) {
+    return res.status(404).json({ error: "Manga not found" });
+  }
+
+  res.status(200).json({ message: "Manga deleted successfully" });
 });
 
 app.get("/", (req, res) => {
