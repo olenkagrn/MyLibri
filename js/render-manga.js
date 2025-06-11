@@ -210,7 +210,7 @@ export function renderManga(mangaData, currentPage, itemsPerPage) {
 async function updateManga(mangaId, updatedData) {
   try {
     const response = await fetch(
-      `http://localhost:4000/update-manga/${mangaId}`,
+      `https://mylibri.onrender.com/update-manga/${mangaId}`,
       {
         method: "PUT",
         headers: {
@@ -234,7 +234,7 @@ async function updateManga(mangaId, updatedData) {
 async function deleteManga(mangaId) {
   try {
     const response = await fetch(
-      `http://localhost:4000/delete-manga/${mangaId}`,
+      `https://mylibri.onrender.com/delete-manga/${mangaId}`,
       {
         method: "DELETE",
       }

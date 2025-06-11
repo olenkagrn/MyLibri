@@ -49,7 +49,7 @@ submitFiltersBtn.addEventListener("click", async (e) => {
 
   try {
     const response = await fetch(
-      `http://localhost:4000/manga?category=${lowerCaseGenre}`
+      `https://mylibri.onrender.com/manga?category=${lowerCaseGenre}`
     );
     if (!response.ok) throw new Error("Failed to fetch filtered manga.");
 

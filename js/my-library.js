@@ -13,7 +13,7 @@ async function fetchMangaData() {
   console.log("🔄 Виконуємо запит до сервера...");
 
   try {
-    const response = await fetch("http://localhost:4000/manga");
+    const response = await fetch("https://mylibri.onrender.com/manga");
     return await response.json();
   } catch (error) {
     console.error("Error loading manga:", error);

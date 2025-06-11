@@ -19,7 +19,7 @@ form.addEventListener("submit", async function (event) {
   const formData = new FormData(form); // Отримуємо дані форми
 
   try {
-    const response = await fetch("http://localhost:4000/add-manga", {
+    const response = await fetch("https://mylibri.onrender.com/add-manga", {
       method: "POST",
       body: formData,
     });
