@@ -58,7 +58,7 @@ app.post("/add-manga", upload.single("image"), async (req, res) => {
         /\s+/g,
         "_"
       )}`;
-      const bucketName = "uploads";
+      const bucketName = "manga-covers";
 
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from(bucketName)
