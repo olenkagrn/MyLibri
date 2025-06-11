@@ -1,5 +1,5 @@
 console.log("✅ render-manga.js loaded");
-import API_URL from "./config.js";
+const API_URL = process.env.API_URL;
 
 export function renderManga(mangaData, currentPage, itemsPerPage) {
   const mangaContainer = document.getElementById("manga-container");

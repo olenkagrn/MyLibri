@@ -1,4 +1,4 @@
-import API_URL from "./config.js";
+const API_URL = process.env.API_URL;
 
 function init() {
   import("./filter-for-search.js");

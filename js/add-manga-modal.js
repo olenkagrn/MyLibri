@@ -1,4 +1,3 @@
-import API_URL from "./config.js";
 const body = document.querySelector("body");
 const modal = document.getElementById("add-manga__success-modal");
 const close = document.querySelector(".close-btn");
@@ -7,6 +6,7 @@ const open = document.querySelector(".add-manga__btn");
 const form = document.querySelector(".add-manga__form");
 const inputFile = document.getElementById("input-file");
 const imageView = document.getElementById("img-view");
+const API_URL = process.env.API_URL;
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault(); // Зупиняємо оновлення сторінки

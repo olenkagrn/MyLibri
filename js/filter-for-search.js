@@ -1,5 +1,5 @@
 import { renderManga } from "./render-manga.js";
-import API_URL from "./config.js";
+const API_URL = process.env.API_URL;
 
 const body = document.querySelector("body");
 const filterDialog = document.getElementById("filterDialog");
