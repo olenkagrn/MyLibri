@@ -14,7 +14,7 @@ app.use(
   })
 );
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // Підключення до PostgreSQL
 const supabaseUrl = process.env.SUPABASE_URL;
