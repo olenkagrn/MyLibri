@@ -1,3 +1,4 @@
+import API_URL from "./config.js";
 const body = document.querySelector("body");
 const modal = document.getElementById("add-manga__success-modal");
 const close = document.querySelector(".close-btn");
@@ -19,7 +20,7 @@ form.addEventListener("submit", async function (event) {
   const formData = new FormData(form); // Отримуємо дані форми
 
   try {
-    const response = await fetch("https://mylibri.onrender.com/add-manga", {
+    const response = await fetch(`${API_URL}/add-manga`, {
       method: "POST",
       body: formData,
     });

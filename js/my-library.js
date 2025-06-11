@@ -1,3 +1,5 @@
+import API_URL from "./config.js";
+
 function init() {
   import("./filter-for-search.js");
   import("./search-manga.js");
@@ -13,7 +15,7 @@ async function fetchMangaData() {
   console.log("🔄 Виконуємо запит до сервера...");
 
   try {
-    const response = await fetch("https://mylibri.onrender.com/manga");
+    const response = await fetch(`${API_URL}/manga`);
     return await response.json();
   } catch (error) {
     console.error("Error loading manga:", error);

@@ -1,4 +1,5 @@
 import { renderManga } from "./render-manga.js";
+import API_URL from "./config.js";
 
 const body = document.querySelector("body");
 const filterDialog = document.getElementById("filterDialog");
@@ -48,9 +49,7 @@ submitFiltersBtn.addEventListener("click", async (e) => {
   const lowerCaseGenre = selectedGenre.toLowerCase();
 
   try {
-    const response = await fetch(
-      `https://mylibri.onrender.com/manga?category=${lowerCaseGenre}`
-    );
+    const response = await fetch(`${API_URL}/manga?category=${lowerCaseGenre}`);
     if (!response.ok) throw new Error("Failed to fetch filtered manga.");
 
     const filteredManga = await response.json();

@@ -1,4 +1,5 @@
 console.log("✅ render-manga.js loaded");
+import API_URL from "./config.js";
 
 export function renderManga(mangaData, currentPage, itemsPerPage) {
   const mangaContainer = document.getElementById("manga-container");
@@ -209,16 +210,13 @@ export function renderManga(mangaData, currentPage, itemsPerPage) {
 
 async function updateManga(mangaId, updatedData) {
   try {
-    const response = await fetch(
-      `https://mylibri.onrender.com/update-manga/${mangaId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      }
-    );
+    const response = await fetch(`${API_URL}/update-manga/${mangaId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
 
     const data = await response.json();
     if (response.ok) {
@@ -233,12 +231,9 @@ async function updateManga(mangaId, updatedData) {
 
 async function deleteManga(mangaId) {
   try {
-    const response = await fetch(
-      `https://mylibri.onrender.com/delete-manga/${mangaId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${API_URL}/delete-manga/${mangaId}`, {
+      method: "DELETE",
+    });
 
     if (response.ok) {
       console.log("Manga deleted successfully");

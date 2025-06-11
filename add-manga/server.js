@@ -9,7 +9,7 @@ const app = express();
 const cors = require("cors");
 app.use(
   cors({
-    origin: "https://calm-tulumba-187140.netlify.app/",
+    origin: "*",
   })
 );
 
@@ -18,10 +18,13 @@ const port = 4000;
 // Підключення до PostgreSQL
 const pool = new Pool({
   user: "postgres", // Замініть на ваше ім'я користувача PostgreSQL
-  host: "localhost",
-  database: "manga_db", // Назва вашої бази даних
-  password: "2146", // Ваш пароль
+  host: "db.xqjyfqjqmzdixjevxbyy.supabase.co",
+  database: "postgres", // Назва вашої бази даних
+  password: "Asdfggfdsa1!", // Ваш пароль
   port: 5432,
+  ssl: {
+    rejectUnauthorized: false, // Рекомендується для production використовувати true з правильним сертифікатом, але для початку може бути false
+  },
 });
 
 // Налаштування Multer для збереження файлів
