@@ -1,5 +1,5 @@
 import { renderManga } from "./render-manga.js";
-const API_URL = process.env.API_URL;
+const API_URL = "https://mylibri.onrender.com";
 
 const body = document.querySelector("body");
 const filterDialog = document.getElementById("filterDialog");

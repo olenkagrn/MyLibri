@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = "https://mylibri.onrender.com";
 
 function init() {
   import("./filter-for-search.js");

@@ -1,5 +1,5 @@
 console.log("✅ render-manga.js loaded");
-const API_URL = process.env.API_URL;
+const API_URL = "https://mylibri.onrender.com";
 
 export function renderManga(mangaData, currentPage, itemsPerPage) {
   const mangaContainer = document.getElementById("manga-container");

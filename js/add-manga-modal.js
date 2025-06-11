@@ -6,7 +6,7 @@ const open = document.querySelector(".add-manga__btn");
 const form = document.querySelector(".add-manga__form");
 const inputFile = document.getElementById("input-file");
 const imageView = document.getElementById("img-view");
-const API_URL = process.env.API_URL;
+const API_URL = "https://mylibri.onrender.com";
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault(); // Зупиняємо оновлення сторінки
